@@ -1,5 +1,6 @@
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:livescore/features/home/view/home_view.dart';
 import 'package:livescore/theme/theme.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -113,7 +114,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                           Navigator.push(
                               context,
                               PageTransition(
-                                  child: Container(),
+                                  child: const Homeview(),
                                   type: PageTransitionType.bottomToTop));
                         }
                       },
@@ -140,6 +141,9 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                                       fontSize: 10,
                                       fontWeight: FontWeight.bold)),
                             ),
+                            const SizedBox(
+                              height: 20,
+                            )
                           ],
                         ),
                       ),
