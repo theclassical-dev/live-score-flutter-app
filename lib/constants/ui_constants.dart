@@ -5,35 +5,47 @@ import 'package:livescore/theme/theme.dart';
 class UIConstants {
   static AppBar appBar() {
     return AppBar(
-      leading: const Padding(
-        padding: EdgeInsets.all(10),
-        child: CircleAvatar(
-          // radius: 10,
-          backgroundColor: Pallete.greyColor,
-          child: Icon(
-            Icons.person,
-            color: Pallete.whiteColor,
-          ),
+      automaticallyImplyLeading: false,
+      title: Padding(
+        padding: const EdgeInsets.only(left: 8),
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                'SCORELINE',
+                style: GoogleFonts.acme(color: Pallete.blueColor, fontSize: 20),
+              ),
+            ),
+          ],
         ),
-      ),
-      title: Text(
-        'SCORELINE',
-        style: GoogleFonts.acme(color: Colors.black54, fontSize: 15),
       ),
       actions: const [
         Padding(
-          padding: EdgeInsets.only(right: 10),
-          child: CircleAvatar(
-            // radius: 10,
-            backgroundColor: Colors.transparent,
-            child: Icon(
-              Icons.search,
-              color: Pallete.greyColor,
-            ),
+          padding: EdgeInsets.only(right: 15),
+          child: Row(
+            children: [
+              CircleAvatar(
+                backgroundColor: Pallete.whiteColor,
+                radius: 17,
+                child: Icon(
+                  Icons.search,
+                  color: Pallete.blueColor,
+                ),
+              ),
+              SizedBox(width: 10),
+              CircleAvatar(
+                backgroundColor: Pallete.whiteColor,
+                radius: 17,
+                child: Icon(
+                  Icons.notification_add_outlined,
+                  color: Pallete.blueColor,
+                ),
+              ),
+            ],
           ),
         ),
       ],
-      centerTitle: true,
+      // centerTitle: false,
     );
   }
 
@@ -42,7 +54,9 @@ class UIConstants {
       'first screen',
       style: TextStyle(color: Colors.black),
     ),
-    const Text('second screen'),
-    const Text('third screen'),
+    const Text('second screen', style: TextStyle(color: Colors.black)),
+    const Text('third screen', style: TextStyle(color: Colors.black)),
+    const Text('fourth screen', style: TextStyle(color: Colors.black)),
+    const Text('fifth screen', style: TextStyle(color: Colors.black)),
   ];
 }
