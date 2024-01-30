@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:livescore/features/welcome/view/welcome.dart';
 import 'package:livescore/theme/theme.dart';
 
+GlobalKey<NavigatorState> appLayoutKey = GlobalKey<NavigatorState>();
+
 void main() {
   runApp(const ProviderScope(child: MyApp()));
 }
