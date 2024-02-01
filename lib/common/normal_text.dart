@@ -18,7 +18,9 @@ class NormalText extends StatelessWidget {
     return Text(
       text,
       style: GoogleFonts.aleo(
-          fontSize: AppLayout.getHeight(fontSize), color: color),
+          fontSize: AppLayout.getHeight(fontSize),
+          color: color,
+          fontWeight: FontWeight.bold),
     );
   }
 }
