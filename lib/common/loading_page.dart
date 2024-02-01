@@ -12,7 +12,7 @@ class LoadingPage extends StatelessWidget {
       children: [
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 1.0),
-          height: AppLayout.getHeight(90),
+          height: AppLayout.getHeight(60),
           constraints: BoxConstraints(minWidth: AppLayout.getWidth(190)),
           decoration: BoxDecoration(
             color: Pallete.greyLightColor,
@@ -37,7 +37,7 @@ class LoadingPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      height: AppLayout.getHeight(30),
+                      height: AppLayout.getHeight(23),
                       width: AppLayout.getWidth(200),
                       decoration: BoxDecoration(
                           color: Colors.white38,
@@ -48,7 +48,7 @@ class LoadingPage extends StatelessWidget {
                     Row(
                       children: [
                         Container(
-                          height: AppLayout.getHeight(20),
+                          height: AppLayout.getHeight(18),
                           width: AppLayout.getWidth(100),
                           decoration: BoxDecoration(
                               color: Colors.white70,
@@ -56,7 +56,7 @@ class LoadingPage extends StatelessWidget {
                                   AppLayout.getWidth(10))),
                         ),
                         Container(
-                          height: AppLayout.getHeight(20),
+                          height: AppLayout.getHeight(18),
                           width: AppLayout.getWidth(100),
                           decoration: BoxDecoration(
                               color: Colors.white38,
@@ -73,7 +73,7 @@ class LoadingPage extends StatelessWidget {
         ),
         Container(
           margin: const EdgeInsets.only(left: 6.0),
-          height: AppLayout.getHeight(90),
+          height: AppLayout.getHeight(60),
           constraints: BoxConstraints(minWidth: AppLayout.getWidth(22)),
           decoration: BoxDecoration(
             color: Pallete.greyLightColor,

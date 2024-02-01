@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:livescore/common/loading_page.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:livescore/common/normal_text.dart';
 import 'package:livescore/core/core.dart';
-import 'package:livescore/features/match/controller/match_controller.dart';
 import 'package:livescore/features/match/widget/league_card.dart';
 import 'package:livescore/theme/theme.dart';
 
