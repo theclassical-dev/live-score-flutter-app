@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:livescore/common/loading_page.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:livescore/common/normal_text.dart';
 import 'package:livescore/core/core.dart';
 import 'package:livescore/features/match/controller/match_controller.dart';
@@ -20,16 +22,50 @@ class _MatchViewState extends ConsumerState<MatchView> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-          horizontal: AppLayout.getWidth(10),
-          vertical: AppLayout.getHeight(15)),
+          horizontal: AppLayout.getWidth(20),
+          vertical: AppLayout.getHeight(20)),
       child: ListView(
         children: [
+          //league list widget
           const LeagueCard(),
-          NormalText(
-            text: "Live",
-            fontSize: AppLayout.getHeight(18),
-            color: Pallete.redColor,
-          )
+
+          Gap(AppLayout.getHeight(15)),
+
+          // live match headline widget
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      text: 'Live',
+                      style: GoogleFonts.aleo(
+                          fontSize: AppLayout.getHeight(15),
+                          color: Pallete.redColor),
+                      children: [
+                        TextSpan(
+                            text: ' Match',
+                            style: GoogleFonts.aleo(
+                                fontSize: AppLayout.getHeight(15),
+                                color: Colors.black)),
+                      ],
+                    ),
+                  ),
+                  Gap(AppLayout.getHeight(5)),
+                  SpinKitPulse(
+                    color: Pallete.redColor,
+                    size: AppLayout.getHeight(10),
+                  )
+                ],
+              ),
+              NormalText(
+                text: "view all",
+                fontSize: AppLayout.getHeight(13),
+                color: Color(0xFFCFA165),
+              )
+            ],
+          ),
         ],
       ),
     );

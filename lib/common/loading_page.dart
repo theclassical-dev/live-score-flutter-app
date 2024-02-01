@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:livescore/common/normal_text.dart';
 import 'package:livescore/core/app_layout.dart';
 import 'package:livescore/theme/pallete.dart';
 
@@ -12,9 +11,9 @@ class LoadingPage extends StatelessWidget {
     return Row(
       children: [
         Container(
-          margin: const EdgeInsets.symmetric(horizontal: 8.0),
+          margin: const EdgeInsets.symmetric(horizontal: 1.0),
           height: AppLayout.getHeight(90),
-          constraints: BoxConstraints(minWidth: AppLayout.getWidth(200)),
+          constraints: BoxConstraints(minWidth: AppLayout.getWidth(190)),
           decoration: BoxDecoration(
             color: Pallete.greyLightColor,
             borderRadius: BorderRadius.circular(10),
@@ -73,9 +72,9 @@ class LoadingPage extends StatelessWidget {
           ),
         ),
         Container(
-          margin: const EdgeInsets.symmetric(horizontal: 8.0),
+          margin: const EdgeInsets.only(left: 6.0),
           height: AppLayout.getHeight(90),
-          constraints: BoxConstraints(minWidth: AppLayout.getWidth(20)),
+          constraints: BoxConstraints(minWidth: AppLayout.getWidth(22)),
           decoration: BoxDecoration(
             color: Pallete.greyLightColor,
             borderRadius: BorderRadius.only(
