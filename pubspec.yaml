@@ -39,9 +39,11 @@ dependencies:
   any_link_preview: ^3.0.1
   page_transition: ^2.0.5
   community_material_icon: ^5.9.55
-  flutter_svg: 
+  flutter_svg: ^2.0.9
   google_fonts: ^6.1.0
-
+  gap: ^3.0.1
+  http: ^1.2.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

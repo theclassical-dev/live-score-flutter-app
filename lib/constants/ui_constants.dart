@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:livescore/features/match/view/matches.dart';
 import 'package:livescore/theme/theme.dart';
 
 class UIConstants {
@@ -7,7 +8,7 @@ class UIConstants {
     return AppBar(
       automaticallyImplyLeading: false,
       title: Padding(
-        padding: const EdgeInsets.only(left: 8),
+        padding: const EdgeInsets.only(left: 5),
         child: Row(
           children: [
             Expanded(
@@ -21,7 +22,7 @@ class UIConstants {
       ),
       actions: const [
         Padding(
-          padding: EdgeInsets.only(right: 15),
+          padding: EdgeInsets.only(right: 10),
           child: Row(
             children: [
               CircleAvatar(
@@ -50,10 +51,7 @@ class UIConstants {
   }
 
   static List<Widget> bottomTabBarPages = [
-    const Text(
-      'first screen',
-      style: TextStyle(color: Colors.black),
-    ),
+    const MatchView(),
     const Text('second screen', style: TextStyle(color: Colors.black)),
     const Text('third screen', style: TextStyle(color: Colors.black)),
     const Text('fourth screen', style: TextStyle(color: Colors.black)),
