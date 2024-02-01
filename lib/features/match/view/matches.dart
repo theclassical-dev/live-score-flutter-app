@@ -6,6 +6,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:livescore/common/normal_text.dart';
 import 'package:livescore/core/core.dart';
 import 'package:livescore/features/match/widget/league_card.dart';
+import 'package:livescore/features/match/widget/match_card.dart';
 import 'package:livescore/theme/theme.dart';
 
 class MatchView extends ConsumerStatefulWidget {
@@ -27,7 +28,7 @@ class _MatchViewState extends ConsumerState<MatchView> {
           //league list widget
           const LeagueCard(),
 
-          Gap(AppLayout.getHeight(15)),
+          Gap(AppLayout.getHeight(30)),
 
           // live match headline widget
           Row(
@@ -64,6 +65,11 @@ class _MatchViewState extends ConsumerState<MatchView> {
               )
             ],
           ),
+
+          Gap(AppLayout.getHeight(20)),
+
+          //live match card
+          const MatchCard(),
         ],
       ),
     );
