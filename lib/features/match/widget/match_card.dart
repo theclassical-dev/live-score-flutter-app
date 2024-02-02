@@ -15,9 +15,9 @@ class MatchCard extends ConsumerWidget {
       child: Row(
         children: [
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 8.0),
+            margin: const EdgeInsets.symmetric(horizontal: 5.0),
             height: AppLayout.getHeight(180),
-            width: AppLayout.getWidth(300),
+            width: AppLayout.getWidth(290),
             constraints: BoxConstraints(minWidth: AppLayout.getWidth(200)),
             decoration: BoxDecoration(
               color: Pallete.greyColor2,
@@ -117,12 +117,12 @@ class MatchCard extends ConsumerWidget {
             ),
           ),
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 8.0),
+            margin: const EdgeInsets.symmetric(horizontal: 5.0),
             height: AppLayout.getHeight(180),
-            width: AppLayout.getWidth(300),
+            width: AppLayout.getWidth(290),
             constraints: BoxConstraints(minWidth: AppLayout.getWidth(200)),
             decoration: BoxDecoration(
-              color: Pallete.greyColor2,
+              color: const Color(0xFFFF6F6F6),
               borderRadius: BorderRadius.circular(30),
             ),
             child: Padding(
@@ -139,7 +139,7 @@ class MatchCard extends ConsumerWidget {
                           width: AppLayout.getHeight(40),
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.white38,
+                            color: Colors.white,
                           )),
                       NormalText(
                         text: "IN-PLAY",
@@ -159,7 +159,7 @@ class MatchCard extends ConsumerWidget {
                               width: AppLayout.getHeight(58),
                               decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Colors.white38,
+                                color: Colors.white,
                               )),
                           Gap(AppLayout.getWidth(10)),
                           NormalText(
@@ -202,7 +202,7 @@ class MatchCard extends ConsumerWidget {
                               width: AppLayout.getHeight(58),
                               decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Colors.white38,
+                                color: Colors.white,
                               )),
                           Gap(AppLayout.getWidth(10)),
                           NormalText(

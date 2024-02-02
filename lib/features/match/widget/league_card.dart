@@ -18,15 +18,22 @@ class LeagueCard extends ConsumerWidget {
     return league.when(
       data: (leagues) {
         List<League> filteredLeagues = leagues
-            .where((league) =>
-                (league.type == 'LEAGUE' || league.type == 'CUP') &&
-                (league.name.contains('Premier') ||
-                    league.name.contains('Championship') ||
-                    league.name.contains('La Liga') ||
-                    league.name.contains('Champions League') ||
-                    league.name.contains('Ligue 1') ||
-                    league.name.contains('Bundesliga')))
+            .where(
+                (league) => !['BSA', 'CLI', 'PPL', 'DED'].contains(league.code))
+            .take(10)
             .toList();
+
+        // print(league);
+        // List<League> filteredLeagues = leagues
+        // .where((league) =>
+        //     (league.type == 'LEAGUE' || league.type == 'CUP') &&
+        //     (league.name.contains('Premier') ||
+        //         league.name.contains('Championship') ||
+        //         league.name.contains('La Liga') ||
+        //         league.name.contains('Champions League') ||
+        //         league.name.contains('Ligue 1') ||
+        //         league.name.contains('Bundesliga')))
+        // .toList();
 
         return SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -68,18 +75,13 @@ class LeagueCard extends ConsumerWidget {
                               : Image.network(
                                   league.emblem,
                                   color: league.name == "Championship" ||
-                                          league.name == "Bundesliga"
+                                          league.name == "Bundesliga" ||
+                                          league.code == "SA"
                                       ? null
                                       : Colors.white,
                                 ),
                         ),
                       ),
-                      // CircleAvatar(
-                      //   radius: AppLayout.getWidth(25),
-                      //   foregroundColor: Colors.white,
-                      //   backgroundImage: NetworkImage(league.emblem),
-                      //   backgroundColor: Colors.white,
-                      // ),
                       Gap(AppLayout.getHeight(5)),
                       NormalText(
                         text: league.name.toUpperCase(),

@@ -8,6 +8,7 @@ import 'package:livescore/core/core.dart';
 import 'package:livescore/features/match/widget/league_card.dart';
 import 'package:livescore/features/match/widget/match_card.dart';
 import 'package:livescore/features/match/widget/match_list.dart';
+import 'package:livescore/features/match/widget/recent_results_list.dart';
 import 'package:livescore/theme/theme.dart';
 
 class MatchView extends ConsumerStatefulWidget {
@@ -73,8 +74,33 @@ class _MatchViewState extends ConsumerState<MatchView> {
           const MatchCard(),
 
           Gap(AppLayout.getHeight(20)),
+//Recent Results
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  NormalText(
+                    text: "Recent Results",
+                    fontSize: AppLayout.getHeight(15),
+                    color: Pallete.blueColor,
+                  ),
+                ],
+              ),
+              NormalText(
+                text: "view all",
+                fontSize: AppLayout.getHeight(13),
+                color: Pallete.greyColor,
+              )
+            ],
+          ),
+          Gap(AppLayout.getHeight(20)),
+          const RecentResultList(),
+          // Gap(AppLayout.getHeight(10)),
+          // const RecentResultList(),
+          Gap(AppLayout.getHeight(20)),
 
-//match schedule list
+          //match schedule list
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

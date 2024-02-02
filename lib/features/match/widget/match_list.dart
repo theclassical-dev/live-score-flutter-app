@@ -11,7 +11,7 @@ class MatchList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-        margin: const EdgeInsets.symmetric(horizontal: 8.0),
+        // margin: const EdgeInsets.symmetric(horizontal: 8.0),
         height: AppLayout.getHeight(80),
         // width: AppLayout.getWidth(300),
         constraints: BoxConstraints(minWidth: AppLayout.getWidth(200)),
@@ -33,7 +33,7 @@ class MatchList extends ConsumerWidget {
                     fontSize: AppLayout.getHeight(13),
                     color: Pallete.blueColor,
                   ),
-                  Gap(AppLayout.getWidth(5)),
+                  Gap(AppLayout.getWidth(2)),
                   Container(
                     height: AppLayout.getHeight(40),
                     width: AppLayout.getHeight(40),
@@ -49,12 +49,12 @@ class MatchList extends ConsumerWidget {
                 children: [
                   NormalText(
                     text: "27 May 2024",
-                    fontSize: AppLayout.getHeight(13),
+                    fontSize: AppLayout.getHeight(10),
                     color: Pallete.blueColor,
                   ),
                   NormalText(
                     text: "16:30",
-                    fontSize: AppLayout.getHeight(13),
+                    fontSize: AppLayout.getHeight(10),
                     color: Pallete.blueColor,
                   ),
                 ],
@@ -70,7 +70,7 @@ class MatchList extends ConsumerWidget {
                       color: Colors.white,
                     ),
                   ),
-                  Gap(AppLayout.getWidth(5)),
+                  Gap(AppLayout.getWidth(2)),
                   NormalText(
                     text: "Chelsea Fc",
                     fontSize: AppLayout.getHeight(13),
