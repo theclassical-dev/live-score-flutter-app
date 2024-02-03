@@ -122,12 +122,28 @@ class _MatchViewState extends ConsumerState<MatchView> {
           ),
           Gap(AppLayout.getHeight(20)),
           const MatchList(),
-          Gap(AppLayout.getHeight(10)),
-          const MatchList(),
-          Gap(AppLayout.getHeight(10)),
-          const MatchList(),
-          Gap(AppLayout.getHeight(10)),
-          const MatchList(),
+
+          //match schedule list
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  NormalText(
+                    text: "Match Schedule",
+                    fontSize: AppLayout.getHeight(15),
+                    color: Pallete.blueColor,
+                  ),
+                ],
+              ),
+              NormalText(
+                text: "view all",
+                fontSize: AppLayout.getHeight(13),
+                color: Pallete.greyColor,
+              )
+            ],
+          ),
+          Gap(AppLayout.getHeight(20)),
         ],
       ),
     );
