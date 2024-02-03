@@ -17,6 +17,9 @@ class RecentResultList extends ConsumerWidget {
       data: (matches) {
         List<MatchModel> filterMatch =
             matches.where((match) => (match.status == 'FINISHED')).toList();
+        filterMatch.sort((a, b) =>
+            DateTime.parse(b.utcDate).compareTo(DateTime.parse(a.utcDate)));
+
         return SizedBox(
             height: AppLayout.getHeight(300),
             child: ListView.builder(
@@ -31,6 +34,7 @@ class RecentResultList extends ConsumerWidget {
                       UtilsExtension.buildCrestImage(matchData.awayTeam.crest);
 
                   return Container(
+                      margin: const EdgeInsets.symmetric(vertical: 8.0),
                       height: AppLayout.getHeight(90),
                       // width: AppLayout.getWidth(300),
                       constraints:
@@ -102,8 +106,8 @@ class RecentResultList extends ConsumerWidget {
                                 Row(
                                   children: [
                                     Container(
-                                      height: AppLayout.getHeight(40),
-                                      width: AppLayout.getHeight(40),
+                                      height: AppLayout.getHeight(30),
+                                      width: AppLayout.getHeight(30),
                                       decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
                                         color: Colors.white,
@@ -114,7 +118,7 @@ class RecentResultList extends ConsumerWidget {
                                     ),
                                     Gap(AppLayout.getWidth(2)),
                                     NormalText(
-                                      text: "Chelsea Fc",
+                                      text: matchData.awayTeam.shortName,
                                       fontSize: AppLayout.getHeight(13),
                                       color: Pallete.blueColor,
                                     ),
