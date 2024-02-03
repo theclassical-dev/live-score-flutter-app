@@ -41,7 +41,7 @@ class LeagueCard extends ConsumerWidget {
           child: Row(
             children: filteredLeagues.map((league) {
               String imageUrl = league.emblem;
-              String fileExtension = ImageExtension.getFileExtension(imageUrl);
+              String fileExtension = UtilsExtension.getFileExtension(imageUrl);
 
               return Container(
                 margin: const EdgeInsets.symmetric(horizontal: 8.0),

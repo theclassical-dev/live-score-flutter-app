@@ -26,10 +26,16 @@ class MatchList extends ConsumerWidget {
               itemCount: filteredMatch.length,
               itemBuilder: (context, index) {
                 MatchModel matchData = filteredMatch[index];
+
+                //crest hanlder
                 Widget homeTeamCrest =
-                    ImageExtension.buildCrestImage(matchData.homeTeam.crest);
+                    UtilsExtension.buildCrestImage(matchData.homeTeam.crest);
                 Widget awayTeamCrest =
-                    ImageExtension.buildCrestImage(matchData.awayTeam.crest);
+                    UtilsExtension.buildCrestImage(matchData.awayTeam.crest);
+
+                // date handler
+                Map<String, String> formattedDate =
+                    UtilsExtension.formatDate(matchData.utcDate);
                 return Container(
                     margin: const EdgeInsets.symmetric(vertical: 8.0),
                     height: AppLayout.getHeight(80),
@@ -72,12 +78,12 @@ class MatchList extends ConsumerWidget {
                           Column(
                             children: [
                               NormalText(
-                                text: "27 May 2024",
+                                text: "${formattedDate['date']}",
                                 fontSize: AppLayout.getHeight(10),
                                 color: Pallete.blueColor,
                               ),
                               NormalText(
-                                text: "16:30",
+                                text: "${formattedDate['time']}",
                                 fontSize: AppLayout.getHeight(10),
                                 color: Pallete.blueColor,
                               ),
