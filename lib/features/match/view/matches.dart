@@ -63,7 +63,7 @@ class _MatchViewState extends ConsumerState<MatchView> {
               NormalText(
                 text: "view all",
                 fontSize: AppLayout.getHeight(13),
-                color: Color(0xFFCFA165),
+                color: const Color(0xFFCFA165),
               )
             ],
           ),

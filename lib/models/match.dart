@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class Match {
+class MatchModel {
   final Area area;
   final Competition competition;
   final Season season;
@@ -17,7 +17,7 @@ class Match {
   final Odds odds;
   final List<dynamic> referees;
 
-  Match({
+  MatchModel({
     required this.area,
     required this.competition,
     required this.season,
@@ -35,7 +35,7 @@ class Match {
     required this.referees,
   });
 
-  Match copyWith({
+  MatchModel copyWith({
     Area? area,
     Competition? competition,
     Season? season,
@@ -52,7 +52,7 @@ class Match {
     Odds? odds,
     List<dynamic>? referees,
   }) {
-    return Match(
+    return MatchModel(
       area: area ?? this.area,
       competition: competition ?? this.competition,
       season: season ?? this.season,
@@ -71,8 +71,8 @@ class Match {
     );
   }
 
-  factory Match.fromMap(Map<String, dynamic> map) {
-    return Match(
+  factory MatchModel.fromMap(Map<String, dynamic> map) {
+    return MatchModel(
       area: Area.fromMap(map['area']),
       competition: Competition.fromMap(map['competition']),
       season: Season.fromMap(map['season']),
@@ -113,7 +113,8 @@ class Match {
 
   String toJson() => json.encode(toMap());
 
-  factory Match.fromJson(String source) => Match.fromMap(json.decode(source));
+  factory MatchModel.fromJson(String source) =>
+      MatchModel.fromMap(json.decode(source));
 }
 
 class Area {
