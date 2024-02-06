@@ -21,9 +21,10 @@ class MatchList extends ConsumerWidget {
         List<MatchModel> filteredMatch =
             matches.where((match) => (match.status == 'TIMED')).toList();
         return SizedBox(
-          height: AppLayout.getHeight(500),
+          height: filteredMatch.isEmpty ? 0 : null,
           child: ListView.builder(
               itemCount: filteredMatch.length,
+              itemExtent: AppLayout.getHeight(80 + 5),
               itemBuilder: (context, index) {
                 MatchModel matchData = filteredMatch[index];
 
@@ -37,7 +38,8 @@ class MatchList extends ConsumerWidget {
                 Map<String, String> formattedDate =
                     UtilsExtension.formatDate(matchData.utcDate);
                 return Container(
-                    margin: const EdgeInsets.symmetric(vertical: 8.0),
+                    margin:
+                        EdgeInsets.symmetric(vertical: AppLayout.getHeight(5)),
                     height: AppLayout.getHeight(80),
                     // width: AppLayout.getWidth(300),
                     constraints:
@@ -57,7 +59,7 @@ class MatchList extends ConsumerWidget {
                             children: [
                               NormalText(
                                 text: matchData.homeTeam.shortName,
-                                fontSize: AppLayout.getHeight(13),
+                                fontSize: AppLayout.getHeight(10),
                                 color: Pallete.blueColor,
                               ),
                               Gap(AppLayout.getWidth(2)),
@@ -106,7 +108,7 @@ class MatchList extends ConsumerWidget {
                               Gap(AppLayout.getWidth(2)),
                               NormalText(
                                 text: matchData.awayTeam.shortName,
-                                fontSize: AppLayout.getHeight(13),
+                                fontSize: AppLayout.getHeight(10),
                                 color: Pallete.blueColor,
                               ),
                             ],

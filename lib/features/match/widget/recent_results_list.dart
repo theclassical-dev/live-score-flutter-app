@@ -34,7 +34,8 @@ class RecentResultList extends ConsumerWidget {
                       UtilsExtension.buildCrestImage(matchData.awayTeam.crest);
 
                   return Container(
-                      margin: const EdgeInsets.symmetric(vertical: 8.0),
+                      margin: EdgeInsets.symmetric(
+                          vertical: AppLayout.getHeight(5)),
                       height: AppLayout.getHeight(90),
                       // width: AppLayout.getWidth(300),
                       constraints:
@@ -61,7 +62,7 @@ class RecentResultList extends ConsumerWidget {
                                   children: [
                                     NormalText(
                                       text: matchData.homeTeam.shortName,
-                                      fontSize: AppLayout.getHeight(13),
+                                      fontSize: AppLayout.getHeight(10),
                                       color: Pallete.blueColor,
                                     ),
                                     Gap(AppLayout.getWidth(2)),
@@ -86,15 +87,15 @@ class RecentResultList extends ConsumerWidget {
                                       fontSize: AppLayout.getHeight(18),
                                       color: Pallete.blueColor,
                                     ),
-                                    Gap(AppLayout.getWidth(10)),
+                                    Gap(AppLayout.getWidth(5)),
                                     Container(
-                                        height: AppLayout.getHeight(6),
-                                        width: AppLayout.getHeight(20),
+                                        height: AppLayout.getHeight(3),
+                                        width: AppLayout.getHeight(10),
                                         decoration: const BoxDecoration(
                                           shape: BoxShape.rectangle,
                                           color: Pallete.blueColor,
                                         )),
-                                    Gap(AppLayout.getWidth(10)),
+                                    Gap(AppLayout.getWidth(5)),
                                     NormalText(
                                       text: "${matchData.score.fullTime.away}",
                                       fontSize: AppLayout.getHeight(18),
@@ -119,7 +120,7 @@ class RecentResultList extends ConsumerWidget {
                                     Gap(AppLayout.getWidth(2)),
                                     NormalText(
                                       text: matchData.awayTeam.shortName,
-                                      fontSize: AppLayout.getHeight(13),
+                                      fontSize: AppLayout.getHeight(10),
                                       color: Pallete.blueColor,
                                     ),
                                   ],

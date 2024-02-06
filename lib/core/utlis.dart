@@ -28,4 +28,16 @@ class UtilsExtension {
     String formattedTime = DateFormat('HH:mm').format(date);
     return {'date': formattedDate, 'time': formattedTime};
   }
+
+  //get todays time
+  static String getToday() {
+    DateTime date = DateTime.now();
+    return DateFormat('yyyy-MM-dd').format(date);
+  }
+
+  //get future date
+  static String getFuture(int days) {
+    DateTime date = DateTime.now().add(Duration(days: days));
+    return DateFormat('yyyy-MM-dd').format(date);
+  }
 }
