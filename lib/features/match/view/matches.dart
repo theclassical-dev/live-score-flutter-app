@@ -96,8 +96,6 @@ class _MatchViewState extends ConsumerState<MatchView> {
           ),
           Gap(AppLayout.getHeight(20)),
           const RecentResultList(),
-          // Gap(AppLayout.getHeight(10)),
-          // const RecentResultList(),
           Gap(AppLayout.getHeight(20)),
 
           //match schedule list

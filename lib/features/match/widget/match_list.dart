@@ -14,17 +14,22 @@ class MatchList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final match = ref.watch(matchListProvider);
     // print(match);
+    // print(UtilsExtension.getTodaysDate());
+    // print(UtilsExtension.getFutureDate(10));
 
     return match.when(
       data: (matches) {
         //noted schedule is used in postman instead of timed
         List<MatchModel> filteredMatch =
             matches.where((match) => (match.status == 'TIMED')).toList();
+
+        // print(filteredMatch);
         return SizedBox(
-          height: filteredMatch.isEmpty ? 0 : null,
+          height: filteredMatch.isEmpty ? 0 : AppLayout.getHeight(250),
+          // height: 500,
           child: ListView.builder(
               itemCount: filteredMatch.length,
-              itemExtent: AppLayout.getHeight(80 + 5),
+              // itemExtent: AppLayout.getHeight(90 + 5),
               itemBuilder: (context, index) {
                 MatchModel matchData = filteredMatch[index];
 

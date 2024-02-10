@@ -21,7 +21,7 @@ class RecentResultList extends ConsumerWidget {
             DateTime.parse(b.utcDate).compareTo(DateTime.parse(a.utcDate)));
 
         return SizedBox(
-            height: AppLayout.getHeight(300),
+            height: filterMatch.isEmpty ? 0 : AppLayout.getHeight(250),
             child: ListView.builder(
                 itemCount: filterMatch.length,
                 itemBuilder: (context, index) {

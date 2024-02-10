@@ -238,11 +238,11 @@ class Team {
 
   factory Team.fromMap(Map<String, dynamic> map) {
     return Team(
-      id: map['id'],
-      name: map['name'],
-      shortName: map['shortName'],
-      tla: map['tla'],
-      crest: map['crest'],
+      id: map['id'] ?? '',
+      name: map['name'] ?? '',
+      shortName: map['shortName'] ?? '',
+      tla: map['tla'] ?? '',
+      crest: map['crest'] ?? '',
     );
   }
 
