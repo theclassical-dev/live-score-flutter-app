@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:livescore/common/normal_text.dart';
 import 'package:livescore/core/core.dart';
+import 'package:livescore/core/league_array.dart';
 import 'package:livescore/core/utlis.dart';
 import 'package:livescore/models/match.dart';
 import 'package:livescore/theme/theme.dart';
@@ -15,10 +16,12 @@ class RecentResultList extends ConsumerWidget {
     final match = ref.watch(matchListProvider);
     return match.when(
       data: (matches) {
-        List<MatchModel> filterMatch =
-            matches.where((match) => (match.status == 'FINISHED')).toList();
-        filterMatch.sort((a, b) =>
-            DateTime.parse(b.utcDate).compareTo(DateTime.parse(a.utcDate)));
+        List<MatchModel> filterMatch = matches
+            .where((match) => (match.status == 'FINISHED' &&
+                competitionsCodeOrder.contains(match.competition.code)))
+            .toList();
+        // filterMatch.sort((a, b) =>
+        //     DateTime.parse(b.utcDate).compareTo(DateTime.parse(a.utcDate)));
 
         return SizedBox(
             height: filterMatch.isEmpty ? 0 : AppLayout.getHeight(250),

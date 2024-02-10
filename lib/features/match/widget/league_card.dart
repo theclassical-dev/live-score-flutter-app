@@ -84,7 +84,9 @@ class LeagueCard extends ConsumerWidget {
                       ),
                       Gap(AppLayout.getHeight(5)),
                       NormalText(
-                        text: league.name.toUpperCase(),
+                        text: league.code == 'PD'
+                            ? "LA LIGA"
+                            : league.name.toUpperCase(),
                         fontSize: AppLayout.getHeight(18),
                       )
                     ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:intl/intl.dart';
 import 'package:livescore/common/normal_text.dart';
 import 'package:livescore/core/core.dart';
 import 'package:livescore/core/utlis.dart';
@@ -20,12 +21,16 @@ class MatchList extends ConsumerWidget {
     return match.when(
       data: (matches) {
         //noted schedule is used in postman instead of timed
-        List<MatchModel> filteredMatch =
-            matches.where((match) => (match.status == 'TIMED')).toList();
+        List<MatchModel> filteredMatch = matches
+            .where((match) => (match.status == 'TIMED' &&
+                competitionsCodeOrder.contains(match.competition.code)))
+            .take(6)
+            .toList();
 
+        DateTime date = DateTime.now();
         // print(filteredMatch);
         return SizedBox(
-          height: filteredMatch.isEmpty ? 0 : AppLayout.getHeight(250),
+          height: filteredMatch.isEmpty ? 0 : AppLayout.getHeight(275),
           // height: 500,
           child: ListView.builder(
               itemCount: filteredMatch.length,
@@ -85,7 +90,10 @@ class MatchList extends ConsumerWidget {
                           Column(
                             children: [
                               NormalText(
-                                text: "${formattedDate['date']}",
+                                text: formattedDate['date'] ==
+                                        DateFormat('dd MMM yyyy').format(date)
+                                    ? "Today"
+                                    : "${formattedDate['date']}",
                                 fontSize: AppLayout.getHeight(10),
                                 color: Pallete.blueColor,
                               ),
