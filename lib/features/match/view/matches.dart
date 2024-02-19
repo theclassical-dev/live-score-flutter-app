@@ -5,10 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:livescore/common/normal_text.dart';
 import 'package:livescore/core/core.dart';
-import 'package:livescore/features/match/widget/league_card.dart';
-import 'package:livescore/features/match/widget/match_card.dart';
-import 'package:livescore/features/match/widget/match_list.dart';
-import 'package:livescore/features/match/widget/recent_results_list.dart';
+import 'package:livescore/features/match/widget/match_widget.dart';
 import 'package:livescore/theme/theme.dart';
 
 class MatchView extends ConsumerStatefulWidget {
@@ -73,8 +70,8 @@ class _MatchViewState extends ConsumerState<MatchView> {
           //live match card
           const MatchCard(),
 
-          Gap(AppLayout.getHeight(20)),
-//Recent Results
+          Gap(AppLayout.getHeight(30)),
+          //Recent Results
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -87,16 +84,29 @@ class _MatchViewState extends ConsumerState<MatchView> {
                   ),
                 ],
               ),
-              NormalText(
-                text: "view all",
-                fontSize: AppLayout.getHeight(13),
-                color: Pallete.greyColor,
+              GestureDetector(
+                child: NormalText(
+                  text: "view all",
+                  fontSize: AppLayout.getHeight(13),
+                  color: Pallete.greyColor,
+                ),
+                onTap: () {
+                  showModalBottomSheet(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(AppLayout.getHeight(20))),
+                    ),
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (context) => const AllRecentResult(),
+                  );
+                },
               )
             ],
           ),
-          Gap(AppLayout.getHeight(20)),
+          Gap(AppLayout.getHeight(10)),
           const RecentResultList(),
-          Gap(AppLayout.getHeight(20)),
+          Gap(AppLayout.getHeight(30)),
 
           //match schedule list
           Row(
@@ -118,7 +128,7 @@ class _MatchViewState extends ConsumerState<MatchView> {
               )
             ],
           ),
-          Gap(AppLayout.getHeight(20)),
+          Gap(AppLayout.getHeight(10)),
           const MatchList(),
 
           //match schedule list

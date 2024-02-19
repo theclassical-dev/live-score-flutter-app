@@ -27,10 +27,14 @@ class MatchList extends ConsumerWidget {
             .take(6)
             .toList();
 
+        //sorting by competition code
+        // filteredMatch.sort((a, b) =>
+        //     competitionsCodeOrder.indexOf(a.competition.code) -
+        //     competitionsCodeOrder.indexOf(b.competition.code));
         DateTime date = DateTime.now();
         // print(filteredMatch);
         return SizedBox(
-          height: filteredMatch.isEmpty ? 0 : AppLayout.getHeight(275),
+          height: filteredMatch.isEmpty ? 0 : AppLayout.getHeight(330),
           // height: 500,
           child: ListView.builder(
               itemCount: filteredMatch.length,
@@ -50,7 +54,7 @@ class MatchList extends ConsumerWidget {
                 return Container(
                     margin:
                         EdgeInsets.symmetric(vertical: AppLayout.getHeight(5)),
-                    height: AppLayout.getHeight(80),
+                    height: AppLayout.getHeight(120),
                     // width: AppLayout.getWidth(300),
                     constraints:
                         BoxConstraints(minWidth: AppLayout.getWidth(200)),
@@ -65,66 +69,95 @@ class MatchList extends ConsumerWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              NormalText(
-                                text: matchData.homeTeam.shortName,
-                                fontSize: AppLayout.getHeight(10),
-                                color: Pallete.blueColor,
-                              ),
-                              Gap(AppLayout.getWidth(2)),
-                              Container(
-                                height: AppLayout.getHeight(30),
-                                width: AppLayout.getHeight(30),
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
+                          Container(
+                            constraints: BoxConstraints(
+                                minWidth: AppLayout.getWidth(100)),
+                            child: Row(
+                              children: [
+                                NormalText(
+                                  text: matchData.homeTeam.shortName,
+                                  fontSize: AppLayout.getHeight(10),
+                                  color: Pallete.blueColor,
                                 ),
-                                child: Padding(
-                                    padding: const EdgeInsets.all(5.0),
-                                    child: homeTeamCrest),
-                              ),
-                            ],
+                                Gap(AppLayout.getWidth(2)),
+                                Container(
+                                  height: AppLayout.getHeight(30),
+                                  width: AppLayout.getHeight(30),
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.white,
+                                  ),
+                                  child: Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: homeTeamCrest),
+                                ),
+                              ],
+                            ),
                           ),
                           Gap(AppLayout.getWidth(2)),
-                          Column(
-                            children: [
-                              NormalText(
-                                text: formattedDate['date'] ==
-                                        DateFormat('dd MMM yyyy').format(date)
-                                    ? "Today"
-                                    : "${formattedDate['date']}",
-                                fontSize: AppLayout.getHeight(10),
-                                color: Pallete.blueColor,
+                          Container(
+                            constraints: BoxConstraints(
+                                minWidth: AppLayout.getWidth(70)),
+                            child: Padding(
+                              padding:
+                                  EdgeInsets.only(top: AppLayout.getHeight(10)),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  NormalText(
+                                    text: formattedDate['date'] ==
+                                            DateFormat('dd MMM yyyy')
+                                                .format(date)
+                                        ? "Today"
+                                        : "${formattedDate['date']}",
+                                    fontSize: AppLayout.getHeight(10),
+                                    color: Pallete.blueColor,
+                                  ),
+                                  NormalText(
+                                    text: "${formattedDate['time']}",
+                                    fontSize: AppLayout.getHeight(10),
+                                    color: const Color.fromARGB(255, 43, 8, 19),
+                                  ),
+                                  Gap(AppLayout.getHeight(5)),
+                                  NormalText(
+                                    text: matchData.competition.name ==
+                                            "Primera Division"
+                                        ? "La liga"
+                                        : matchData.competition.name,
+                                    fontSize: AppLayout.getHeight(10),
+                                    color: Pallete.redColor,
+                                  ),
+                                ],
                               ),
-                              NormalText(
-                                text: "${formattedDate['time']}",
-                                fontSize: AppLayout.getHeight(10),
-                                color: const Color.fromARGB(255, 43, 8, 19),
-                              ),
-                            ],
+                            ),
                           ),
                           Gap(AppLayout.getWidth(2)),
-                          Row(
-                            children: [
-                              Container(
-                                height: AppLayout.getHeight(30),
-                                width: AppLayout.getHeight(30),
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
+                          Container(
+                            constraints: BoxConstraints(
+                                minWidth: AppLayout.getWidth(100)),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: AppLayout.getHeight(30),
+                                  width: AppLayout.getHeight(30),
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.white,
+                                  ),
+                                  child: Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: awayTeamCrest),
                                 ),
-                                child: Padding(
-                                    padding: const EdgeInsets.all(5.0),
-                                    child: awayTeamCrest),
-                              ),
-                              Gap(AppLayout.getWidth(2)),
-                              NormalText(
-                                text: matchData.awayTeam.shortName,
-                                fontSize: AppLayout.getHeight(10),
-                                color: Pallete.blueColor,
-                              ),
-                            ],
+                                Gap(AppLayout.getWidth(2)),
+                                NormalText(
+                                  text: matchData.awayTeam.shortName,
+                                  fontSize: AppLayout.getHeight(10),
+                                  color: Pallete.blueColor,
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
