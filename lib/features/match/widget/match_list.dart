@@ -55,7 +55,7 @@ class MatchList extends ConsumerWidget {
                     constraints:
                         BoxConstraints(minWidth: AppLayout.getWidth(200)),
                     decoration: BoxDecoration(
-                      color: Color(0xFFFF6F6F6),
+                      color: const Color(0xFFf6f6f6),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Padding(
@@ -100,7 +100,7 @@ class MatchList extends ConsumerWidget {
                               NormalText(
                                 text: "${formattedDate['time']}",
                                 fontSize: AppLayout.getHeight(10),
-                                color: Pallete.blueColor,
+                                color: const Color.fromARGB(255, 43, 8, 19),
                               ),
                             ],
                           ),

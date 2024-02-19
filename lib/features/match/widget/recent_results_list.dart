@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:livescore/common/normal_text.dart';
 import 'package:livescore/core/core.dart';
-import 'package:livescore/core/league_array.dart';
 import 'package:livescore/core/utlis.dart';
 import 'package:livescore/models/match.dart';
 import 'package:livescore/theme/theme.dart';
@@ -13,18 +12,26 @@ class RecentResultList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final match = ref.watch(matchListProvider);
-    return match.when(
+    // final match = ref.watch(matchListProvider);
+    final recentPlayedMatch = ref.watch(recentPlayedMatchListProvider);
+
+    return recentPlayedMatch.when(
       data: (matches) {
         List<MatchModel> filterMatch = matches
-            .where((match) => (match.status == 'FINISHED' &&
-                competitionsCodeOrder.contains(match.competition.code)))
+            .where((match) =>
+                (competitionsCodeOrder.contains(match.competition.code)))
             .toList();
-        // filterMatch.sort((a, b) =>
-        //     DateTime.parse(b.utcDate).compareTo(DateTime.parse(a.utcDate)));
+
+        // List<MatchModel> filterMatch = matches
+        // .where((match) => (match.status == 'FINISHED' &&
+        //     competitionsCodeOrder.contains(match.competition.code)))
+        // .toList();
+
+        filterMatch.sort((a, b) =>
+            DateTime.parse(b.utcDate).compareTo(DateTime.parse(a.utcDate)));
 
         return SizedBox(
-            height: filterMatch.isEmpty ? 0 : AppLayout.getHeight(250),
+            height: filterMatch.isEmpty ? 0 : AppLayout.getHeight(275),
             child: ListView.builder(
                 itemCount: filterMatch.length,
                 itemBuilder: (context, index) {
@@ -36,15 +43,17 @@ class RecentResultList extends ConsumerWidget {
                   Widget awayTeamCrest =
                       UtilsExtension.buildCrestImage(matchData.awayTeam.crest);
 
+                  Map<String, String> formattedDate =
+                      UtilsExtension.formatDate(matchData.utcDate);
                   return Container(
                       margin: EdgeInsets.symmetric(
                           vertical: AppLayout.getHeight(5)),
-                      height: AppLayout.getHeight(90),
+                      height: AppLayout.getHeight(120),
                       // width: AppLayout.getWidth(300),
                       constraints:
                           BoxConstraints(minWidth: AppLayout.getWidth(200)),
                       decoration: BoxDecoration(
-                        color: Color(0xFFFF6F6F6),
+                        color: const Color(0xFFf6f6f6),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Padding(
@@ -55,6 +64,11 @@ class RecentResultList extends ConsumerWidget {
                           children: [
                             NormalText(
                               text: matchData.status,
+                              fontSize: AppLayout.getHeight(10),
+                              color: Pallete.blueColor,
+                            ),
+                            NormalText(
+                              text: "${formattedDate['date']}",
                               fontSize: AppLayout.getHeight(10),
                               color: Pallete.blueColor,
                             ),
@@ -129,6 +143,15 @@ class RecentResultList extends ConsumerWidget {
                                   ],
                                 ),
                               ],
+                            ),
+                            Gap(AppLayout.getHeight(5)),
+                            NormalText(
+                              text: matchData.competition.name ==
+                                      "Primera Division"
+                                  ? "La liga"
+                                  : matchData.competition.name,
+                              fontSize: AppLayout.getHeight(10),
+                              color: Pallete.blueColor,
                             ),
                           ],
                         ),

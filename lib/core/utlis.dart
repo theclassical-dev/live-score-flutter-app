@@ -54,4 +54,10 @@ class UtilsExtension {
     String formatedDate = DateFormat('yyyy-MM-dd').format(date);
     return int.parse(formatedDate);
   }
+
+  //get minused date in string
+  static String getSubtractedDate(int days) {
+    DateTime date = DateTime.now().subtract(Duration(days: days));
+    return DateFormat('yyyy-MM-dd').format(date);
+  }
 }

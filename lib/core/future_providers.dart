@@ -10,3 +10,7 @@ final leagueListProvider = FutureProvider<List<League>>((ref) async {
 final matchListProvider = FutureProvider<List<MatchModel>>((ref) async {
   return ref.watch(apiServiceProvider).getMatches();
 });
+final recentPlayedMatchListProvider =
+    FutureProvider<List<MatchModel>>((ref) async {
+  return ref.watch(apiServiceProvider).getRecentPlayedMatches();
+});
