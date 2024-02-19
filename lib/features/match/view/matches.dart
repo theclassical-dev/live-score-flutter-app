@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:livescore/common/normal_text.dart';
 import 'package:livescore/core/core.dart';
+import 'package:livescore/features/match/widget/all_match_list.dart';
 import 'package:livescore/features/match/widget/match_widget.dart';
 import 'package:livescore/theme/theme.dart';
 
@@ -121,10 +122,23 @@ class _MatchViewState extends ConsumerState<MatchView> {
                   ),
                 ],
               ),
-              NormalText(
-                text: "view all",
-                fontSize: AppLayout.getHeight(13),
-                color: Pallete.greyColor,
+              GestureDetector(
+                child: NormalText(
+                  text: "view all",
+                  fontSize: AppLayout.getHeight(13),
+                  color: Pallete.greyColor,
+                ),
+                onTap: () {
+                  showModalBottomSheet(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(AppLayout.getHeight(20))),
+                    ),
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (context) => const AllMatchList(),
+                  );
+                },
               )
             ],
           ),
