@@ -1,10 +1,10 @@
 List<String> competitionsCodeOrder = [
-  'ELC',
   'PL',
   'CL',
   'EC',
   'FL1',
   'BL1',
+  'ELC',
   'SA',
   'CLI',
   'PD',

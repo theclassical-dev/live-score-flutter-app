@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:livescore/common/normal_text.dart';
 import 'package:livescore/core/core.dart';
@@ -20,7 +21,6 @@ class RecentResultList extends ConsumerWidget {
         List<MatchModel> filterMatch = matches
             .where((match) =>
                 (competitionsCodeOrder.contains(match.competition.code)))
-            // .take(6)
             .toList();
 
         // List<MatchModel> filterMatch = matches
@@ -31,12 +31,13 @@ class RecentResultList extends ConsumerWidget {
         filterMatch.sort((a, b) =>
             DateTime.parse(b.utcDate).compareTo(DateTime.parse(a.utcDate)));
 
+        List<MatchModel> finalfilterMatch = filterMatch.take(5).toList();
         return SizedBox(
-            height: filterMatch.isEmpty ? 0 : AppLayout.getHeight(330),
+            height: filterMatch.isEmpty ? 0 : AppLayout.getHeight(300),
             child: ListView.builder(
-                itemCount: filterMatch.length,
+                itemCount: finalfilterMatch.length,
                 itemBuilder: (context, index) {
-                  MatchModel matchData = filterMatch[index];
+                  MatchModel matchData = finalfilterMatch[index];
 
                   //crest hanlder
                   Widget homeTeamCrest =
@@ -180,7 +181,11 @@ class RecentResultList extends ConsumerWidget {
                       ));
                 }));
       },
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => SpinKitWaveSpinner(
+        color: const Color(0xFFf6f6f6),
+        waveColor: Pallete.blueColor,
+        size: AppLayout.getHeight(70),
+      ),
       error: (error, stack) => Center(
         child: Text("Error: $error"),
       ),

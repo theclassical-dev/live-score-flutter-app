@@ -105,7 +105,6 @@ class AllMatchList extends ConsumerWidget {
                                   ],
                                 ),
                               ),
-                              Gap(AppLayout.getWidth(2)),
                               Container(
                                 constraints: BoxConstraints(
                                     minWidth: AppLayout.getWidth(70)),
@@ -139,14 +138,16 @@ class AllMatchList extends ConsumerWidget {
                                                 "Primera Division"
                                             ? "La liga"
                                             : matchData.competition.name,
-                                        fontSize: AppLayout.getHeight(10),
+                                        fontSize:
+                                            matchData.competition.code == "CL"
+                                                ? AppLayout.getHeight(8)
+                                                : AppLayout.getHeight(10),
                                         color: Pallete.redColor,
                                       ),
                                     ],
                                   ),
                                 ),
                               ),
-                              Gap(AppLayout.getWidth(2)),
                               Container(
                                 constraints: BoxConstraints(
                                     minWidth: AppLayout.getWidth(100)),
@@ -160,7 +161,8 @@ class AllMatchList extends ConsumerWidget {
                                         color: Colors.white,
                                       ),
                                       child: Padding(
-                                          padding: const EdgeInsets.all(5.0),
+                                          padding: EdgeInsets.all(
+                                              AppLayout.getHeight(5)),
                                           child: awayTeamCrest),
                                     ),
                                     Gap(AppLayout.getWidth(2)),

@@ -20,154 +20,334 @@ class _MatchViewState extends ConsumerState<MatchView> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: AppLayout.getWidth(20),
-          vertical: AppLayout.getHeight(20)),
-      child: ListView(
-        children: [
-          //league list widget
-          const LeagueCard(),
-
-          Gap(AppLayout.getHeight(30)),
-
-          // live match headline widget
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
+        padding: EdgeInsets.symmetric(
+            horizontal: AppLayout.getWidth(20),
+            vertical: AppLayout.getHeight(20)),
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: const LeagueCard(),
+            ),
+            SliverToBoxAdapter(
+              child: Gap(AppLayout.getHeight(30)),
+            ),
+            SliverToBoxAdapter(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  RichText(
-                    text: TextSpan(
-                      text: 'Live',
-                      style: GoogleFonts.aleo(
-                          fontSize: AppLayout.getHeight(15),
-                          color: Pallete.redColor),
-                      children: [
-                        TextSpan(
-                            text: ' Match',
-                            style: GoogleFonts.aleo(
+                  Row(
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          text: 'Live',
+                          style: GoogleFonts.aleo(
+                            fontSize: AppLayout.getHeight(15),
+                            color: Pallete.redColor,
+                          ),
+                          children: [
+                            TextSpan(
+                              text: ' Match',
+                              style: GoogleFonts.aleo(
                                 fontSize: AppLayout.getHeight(15),
-                                color: Colors.black)),
-                      ],
-                    ),
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Gap(AppLayout.getHeight(5)),
+                      SpinKitPulse(
+                        color: Pallete.redColor,
+                        size: AppLayout.getHeight(10),
+                      ),
+                    ],
                   ),
-                  Gap(AppLayout.getHeight(5)),
-                  SpinKitPulse(
-                    color: Pallete.redColor,
-                    size: AppLayout.getHeight(10),
-                  )
-                ],
-              ),
-              NormalText(
-                text: "view all",
-                fontSize: AppLayout.getHeight(13),
-                color: const Color(0xFFCFA165),
-              )
-            ],
-          ),
-
-          Gap(AppLayout.getHeight(20)),
-
-          //live match card
-          const MatchCard(),
-
-          Gap(AppLayout.getHeight(30)),
-          //Recent Results
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
                   NormalText(
-                    text: "Recent Results",
-                    fontSize: AppLayout.getHeight(15),
-                    color: Pallete.blueColor,
+                    text: "view all",
+                    fontSize: AppLayout.getHeight(13),
+                    color: const Color(0xFFCFA165),
                   ),
                 ],
               ),
-              GestureDetector(
-                child: NormalText(
-                  text: "view all",
-                  fontSize: AppLayout.getHeight(13),
-                  color: Pallete.greyColor,
-                ),
-                onTap: () {
-                  showModalBottomSheet(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(AppLayout.getHeight(20))),
-                    ),
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (context) => const AllRecentResult(),
-                  );
-                },
-              )
-            ],
-          ),
-          Gap(AppLayout.getHeight(10)),
-          const RecentResultList(),
-          Gap(AppLayout.getHeight(30)),
-
-          //match schedule list
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
+            ),
+            SliverToBoxAdapter(
+              child: Gap(AppLayout.getHeight(20)),
+            ),
+            SliverToBoxAdapter(
+              child: const MatchCard(),
+            ),
+            SliverToBoxAdapter(
+              child: Gap(AppLayout.getHeight(30)),
+            ),
+            SliverToBoxAdapter(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  NormalText(
-                    text: "Match Schedule",
-                    fontSize: AppLayout.getHeight(15),
-                    color: Pallete.blueColor,
+                  Row(
+                    children: [
+                      NormalText(
+                        text: "Recent Results",
+                        fontSize: AppLayout.getHeight(15),
+                        color: Pallete.blueColor,
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              GestureDetector(
-                child: NormalText(
-                  text: "view all",
-                  fontSize: AppLayout.getHeight(13),
-                  color: Pallete.greyColor,
-                ),
-                onTap: () {
-                  showModalBottomSheet(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(AppLayout.getHeight(20))),
+                  GestureDetector(
+                    child: NormalText(
+                      text: "view all",
+                      fontSize: AppLayout.getHeight(13),
+                      color: Pallete.greyColor,
                     ),
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (context) => const AllMatchList(),
-                  );
-                },
-              )
-            ],
-          ),
-          Gap(AppLayout.getHeight(10)),
-          const MatchList(),
-
-          //match schedule list
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  NormalText(
-                    text: "Match Schedule",
-                    fontSize: AppLayout.getHeight(15),
-                    color: Pallete.blueColor,
+                    onTap: () {
+                      showModalBottomSheet(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(AppLayout.getHeight(20)),
+                          ),
+                        ),
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (context) => const AllRecentResult(),
+                      );
+                    },
                   ),
                 ],
               ),
-              NormalText(
-                text: "view all",
-                fontSize: AppLayout.getHeight(13),
-                color: Pallete.greyColor,
-              )
-            ],
-          ),
-          Gap(AppLayout.getHeight(20)),
-        ],
-      ),
-    );
+            ),
+            SliverToBoxAdapter(
+              child: Gap(AppLayout.getHeight(10)),
+            ),
+            SliverToBoxAdapter(
+              child: const RecentResultList(),
+            ),
+            SliverToBoxAdapter(
+              child: Gap(AppLayout.getHeight(30)),
+            ),
+            SliverToBoxAdapter(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      NormalText(
+                        text: "Match Schedule",
+                        fontSize: AppLayout.getHeight(15),
+                        color: Pallete.blueColor,
+                      ),
+                    ],
+                  ),
+                  GestureDetector(
+                    child: NormalText(
+                      text: "view all",
+                      fontSize: AppLayout.getHeight(13),
+                      color: Pallete.greyColor,
+                    ),
+                    onTap: () {
+                      showModalBottomSheet(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(AppLayout.getHeight(20)),
+                          ),
+                        ),
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (context) => const AllMatchList(),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Gap(AppLayout.getHeight(10)),
+            ),
+            const SliverToBoxAdapter(
+              child: MatchList(),
+            ),
+            SliverToBoxAdapter(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      NormalText(
+                        text: "Match Schedule",
+                        fontSize: AppLayout.getHeight(15),
+                        color: Pallete.blueColor,
+                      ),
+                    ],
+                  ),
+                  NormalText(
+                    text: "view all",
+                    fontSize: AppLayout.getHeight(13),
+                    color: Pallete.greyColor,
+                  ),
+                ],
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Gap(AppLayout.getHeight(20)),
+            ),
+            SliverToBoxAdapter(
+              child: SpinKitWaveSpinner(
+                color: Color(0xFFf6f6f6),
+                waveColor: Pallete.blueColor,
+                size: AppLayout.getHeight(70),
+              ),
+            ),
+          ],
+        ));
+    //
+    // ListView(
+    //   children: [
+    //     //league list widget
+    //     const LeagueCard(),
+
+    //     Gap(AppLayout.getHeight(30)),
+
+    //     // live match headline widget
+    //     Row(
+    //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //       children: [
+    //         Row(
+    //           children: [
+    //             RichText(
+    //               text: TextSpan(
+    //                 text: 'Live',
+    //                 style: GoogleFonts.aleo(
+    //                     fontSize: AppLayout.getHeight(15),
+    //                     color: Pallete.redColor),
+    //                 children: [
+    //                   TextSpan(
+    //                       text: ' Match',
+    //                       style: GoogleFonts.aleo(
+    //                           fontSize: AppLayout.getHeight(15),
+    //                           color: Colors.black)),
+    //                 ],
+    //               ),
+    //             ),
+    //             Gap(AppLayout.getHeight(5)),
+    //             SpinKitPulse(
+    //               color: Pallete.redColor,
+    //               size: AppLayout.getHeight(10),
+    //             )
+    //           ],
+    //         ),
+    //         NormalText(
+    //           text: "view all",
+    //           fontSize: AppLayout.getHeight(13),
+    //           color: const Color(0xFFCFA165),
+    //         )
+    //       ],
+    //     ),
+
+    //     Gap(AppLayout.getHeight(20)),
+
+    //     //live match card
+    //     const MatchCard(),
+
+    //     Gap(AppLayout.getHeight(30)),
+    //     //Recent Results
+    //     Row(
+    //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //       children: [
+    //         Row(
+    //           children: [
+    //             NormalText(
+    //               text: "Recent Results",
+    //               fontSize: AppLayout.getHeight(15),
+    //               color: Pallete.blueColor,
+    //             ),
+    //           ],
+    //         ),
+    //         GestureDetector(
+    //           child: NormalText(
+    //             text: "view all",
+    //             fontSize: AppLayout.getHeight(13),
+    //             color: Pallete.greyColor,
+    //           ),
+    //           onTap: () {
+    //             showModalBottomSheet(
+    //               shape: RoundedRectangleBorder(
+    //                 borderRadius: BorderRadius.vertical(
+    //                     top: Radius.circular(AppLayout.getHeight(20))),
+    //               ),
+    //               context: context,
+    //               isScrollControlled: true,
+    //               builder: (context) => const AllRecentResult(),
+    //             );
+    //           },
+    //         )
+    //       ],
+    //     ),
+    //     Gap(AppLayout.getHeight(10)),
+    //     const RecentResultList(),
+    //     Gap(AppLayout.getHeight(30)),
+
+    //     //match schedule list
+    //     Row(
+    //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //       children: [
+    //         Row(
+    //           children: [
+    //             NormalText(
+    //               text: "Match Schedule",
+    //               fontSize: AppLayout.getHeight(15),
+    //               color: Pallete.blueColor,
+    //             ),
+    //           ],
+    //         ),
+    //         GestureDetector(
+    //           child: NormalText(
+    //             text: "view all",
+    //             fontSize: AppLayout.getHeight(13),
+    //             color: Pallete.greyColor,
+    //           ),
+    //           onTap: () {
+    //             showModalBottomSheet(
+    //               shape: RoundedRectangleBorder(
+    //                 borderRadius: BorderRadius.vertical(
+    //                     top: Radius.circular(AppLayout.getHeight(20))),
+    //               ),
+    //               context: context,
+    //               isScrollControlled: true,
+    //               builder: (context) => const AllMatchList(),
+    //             );
+    //           },
+    //         )
+    //       ],
+    //     ),
+    //     Gap(AppLayout.getHeight(10)),
+    //     const MatchList(),
+
+    //     //match schedule list
+    //     Row(
+    //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //       children: [
+    //         Row(
+    //           children: [
+    //             NormalText(
+    //               text: "Match Schedule",
+    //               fontSize: AppLayout.getHeight(15),
+    //               color: Pallete.blueColor,
+    //             ),
+    //           ],
+    //         ),
+    //         NormalText(
+    //           text: "view all",
+    //           fontSize: AppLayout.getHeight(13),
+    //           color: Pallete.greyColor,
+    //         )
+    //       ],
+    //     ),
+    //     Gap(AppLayout.getHeight(20)),
+    //     SpinKitWaveSpinner(
+    //       color: Color(0xFFf6f6f6),
+    //       waveColor: Pallete.blueColor,
+    //       size: AppLayout.getHeight(70),
+    //     )
+    //   ],
+    // ),
+    // );
   }
 }

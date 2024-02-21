@@ -24,7 +24,7 @@ class MatchList extends ConsumerWidget {
         List<MatchModel> filteredMatch = matches
             .where((match) => (match.status == 'TIMED' &&
                 competitionsCodeOrder.contains(match.competition.code)))
-            .take(6)
+            .take(5)
             .toList();
 
         //sorting by competition code
@@ -34,11 +34,12 @@ class MatchList extends ConsumerWidget {
         DateTime date = DateTime.now();
         // print(filteredMatch);
         return SizedBox(
-          height: filteredMatch.isEmpty ? 0 : AppLayout.getHeight(330),
+          height: filteredMatch.isEmpty ? 0 : AppLayout.getHeight(300),
           // height: 500,
           child: ListView.builder(
               itemCount: filteredMatch.length,
-              // itemExtent: AppLayout.getHeight(90 + 5),
+              shrinkWrap: true,
+              physics: const ClampingScrollPhysics(),
               itemBuilder: (context, index) {
                 MatchModel matchData = filteredMatch[index];
 
@@ -126,7 +127,9 @@ class MatchList extends ConsumerWidget {
                                             "Primera Division"
                                         ? "La liga"
                                         : matchData.competition.name,
-                                    fontSize: AppLayout.getHeight(10),
+                                    fontSize: matchData.competition.code == "CL"
+                                        ? AppLayout.getHeight(8)
+                                        : AppLayout.getHeight(10),
                                     color: Pallete.redColor,
                                   ),
                                 ],
