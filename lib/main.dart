@@ -9,8 +9,8 @@ GlobalKey<NavigatorState> appLayoutKey = GlobalKey<NavigatorState>();
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
-      statusBarColor: Pallete.backgroundColor,
-      systemNavigationBarColor: Pallete.backgroundColor,
+      statusBarColor: Pallete.blueColor,
+      systemNavigationBarColor: Pallete.blueColor,
     ),
   );
   runApp(const ProviderScope(child: MyApp()));

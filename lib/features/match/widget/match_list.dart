@@ -95,7 +95,7 @@ class MatchList extends ConsumerWidget {
                               ],
                             ),
                           ),
-                          Gap(AppLayout.getWidth(2)),
+                          // Gap(AppLayout.getWidth(2)),
                           Container(
                             constraints: BoxConstraints(
                                 minWidth: AppLayout.getWidth(70)),
@@ -119,7 +119,7 @@ class MatchList extends ConsumerWidget {
                                   NormalText(
                                     text: "${formattedDate['time']}",
                                     fontSize: AppLayout.getHeight(10),
-                                    color: const Color.fromARGB(255, 43, 8, 19),
+                                    color: Color(0xFF2B0813),
                                   ),
                                   Gap(AppLayout.getHeight(5)),
                                   NormalText(
@@ -128,15 +128,15 @@ class MatchList extends ConsumerWidget {
                                         ? "La liga"
                                         : matchData.competition.name,
                                     fontSize: matchData.competition.code == "CL"
-                                        ? AppLayout.getHeight(8)
-                                        : AppLayout.getHeight(10),
+                                        ? AppLayout.getHeight(7)
+                                        : AppLayout.getHeight(9),
                                     color: Pallete.redColor,
                                   ),
                                 ],
                               ),
                             ),
                           ),
-                          Gap(AppLayout.getWidth(2)),
+                          // Gap(AppLayout.getWidth(2)),
                           Container(
                             constraints: BoxConstraints(
                                 minWidth: AppLayout.getWidth(100)),
