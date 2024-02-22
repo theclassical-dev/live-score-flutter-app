@@ -15,8 +15,10 @@ class MatchCard extends ConsumerWidget {
     final match = ref.watch(matchListProvider);
     return match.when(
       data: (matches) {
-        List<MatchModel> filterMatch =
-            matches.where((match) => (match.status == 'IN_PLAY')).toList();
+        List<MatchModel> filterMatch = matches
+            .where((match) => (match.status == 'IN_PLAY' &&
+                competitionsCodeOrder.contains(match.competition.code)))
+            .toList();
         filterMatch.sort((a, b) =>
             DateTime.parse(b.utcDate).compareTo(DateTime.parse(a.utcDate)));
 
@@ -40,7 +42,7 @@ class MatchCard extends ConsumerWidget {
               width: AppLayout.getWidth(290),
               constraints: BoxConstraints(minWidth: AppLayout.getWidth(200)),
               decoration: BoxDecoration(
-                color: Pallete.greyColor2,
+                color: Pallete.blueColor,
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Padding(
@@ -66,7 +68,7 @@ class MatchCard extends ConsumerWidget {
                         NormalText(
                           text: matchData.status,
                           fontSize: AppLayout.getHeight(10),
-                          color: Pallete.blueColor,
+                          color: Pallete.whiteColor,
                         )
                       ],
                     ),
@@ -90,8 +92,8 @@ class MatchCard extends ConsumerWidget {
                             Gap(AppLayout.getWidth(10)),
                             NormalText(
                               text: matchData.homeTeam.shortName,
-                              fontSize: AppLayout.getHeight(15),
-                              color: Pallete.blueColor,
+                              fontSize: AppLayout.getHeight(13),
+                              color: Pallete.whiteColor,
                             ),
                           ],
                         ),
@@ -102,7 +104,7 @@ class MatchCard extends ConsumerWidget {
                               NormalText(
                                 text: "${matchData.score.fullTime.home}",
                                 fontSize: AppLayout.getHeight(25),
-                                color: Pallete.blueColor,
+                                color: Pallete.whiteColor,
                               ),
                               Gap(AppLayout.getWidth(10)),
                               Container(
@@ -110,13 +112,13 @@ class MatchCard extends ConsumerWidget {
                                   width: AppLayout.getHeight(20),
                                   decoration: const BoxDecoration(
                                     shape: BoxShape.rectangle,
-                                    color: Pallete.blueColor,
+                                    color: Pallete.whiteColor,
                                   )),
                               Gap(AppLayout.getWidth(10)),
                               NormalText(
                                 text: '${matchData.score.fullTime.away}',
                                 fontSize: AppLayout.getHeight(25),
-                                color: Pallete.blueColor,
+                                color: Pallete.whiteColor,
                               )
                             ],
                           ),
@@ -138,12 +140,18 @@ class MatchCard extends ConsumerWidget {
                             Gap(AppLayout.getWidth(10)),
                             NormalText(
                               text: matchData.awayTeam.shortName,
-                              fontSize: AppLayout.getHeight(15),
-                              color: Pallete.blueColor,
+                              fontSize: AppLayout.getHeight(13),
+                              color: Pallete.whiteColor,
                             )
                           ],
                         ),
                       ],
+                    ),
+                    Gap(AppLayout.getWidth(8)),
+                    NormalText(
+                      text: matchData.competition.name,
+                      fontSize: AppLayout.getHeight(13),
+                      color: Pallete.whiteColor,
                     )
                   ],
                 ),

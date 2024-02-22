@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:livescore/core/api_engine.dart';
 import 'package:livescore/core/utlis.dart';
+import 'package:livescore/models/articles.dart';
 import 'package:livescore/models/leagues.dart';
 import 'package:livescore/models/match.dart';
 
@@ -11,6 +12,7 @@ class ApiService {
   //date
   String todaysDate = UtilsExtension.getTodaysDate();
   String nextDates = UtilsExtension.getFutureDate(7);
+  String nextDay = UtilsExtension.getFutureDate(1);
   String subDateFrom = UtilsExtension.getSubtractedDate(6);
   String subDateTo = UtilsExtension.getSubtractedDate(1);
 
@@ -61,7 +63,7 @@ class ApiService {
   Future<List<MatchModel>> getRecentPlayedMatches() async {
     try {
       http.Response response = await apiEngine
-          .getData('/matches/?dateFrom=$subDateFrom&dateTo=$todaysDate');
+          .getData('/matches/?dateFrom=$subDateFrom&dateTo=$nextDay');
 
       // print(response.body);
       // print(subDateFrom);
@@ -77,6 +79,31 @@ class ApiService {
       } else {
         throw Exception(
             'Failed to load match. Server responded with status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<List<Article>> getArticleList() async {
+    try {
+      http.Response response = await apiEngine.getNewsData();
+
+      print(response.statusCode);
+      print(response.body);
+
+      if (response.statusCode == 200) {
+        List<dynamic> jsonResponse = json.decode(response.body)['articles'];
+
+        List<Article> articles = jsonResponse
+            .map((data) => Article.fromMap(data ?? {}))
+            // ignore: unnecessary_null_comparison
+            .where((artcile) => artcile != null)
+            .toList();
+        return articles;
+      } else {
+        throw Exception(
+            'Failed to load artciles. Server responded with status code: ${response.statusCode}');
       }
     } catch (e) {
       rethrow;

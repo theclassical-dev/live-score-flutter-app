@@ -19,8 +19,8 @@ class RecentResultList extends ConsumerWidget {
     return recentPlayedMatch.when(
       data: (matches) {
         List<MatchModel> filterMatch = matches
-            .where((match) =>
-                (competitionsCodeOrder.contains(match.competition.code)))
+            .where((match) => (match.status == 'FINISHED' &&
+                competitionsCodeOrder.contains(match.competition.code)))
             .toList();
 
         // List<MatchModel> filterMatch = matches
