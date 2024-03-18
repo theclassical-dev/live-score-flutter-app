@@ -31,155 +31,150 @@ class RecentResultList extends ConsumerWidget {
         filterMatch.sort((a, b) =>
             DateTime.parse(b.utcDate).compareTo(DateTime.parse(a.utcDate)));
 
-        List<MatchModel> finalfilterMatch = filterMatch.take(5).toList();
+        List<MatchModel> finalfilterMatch = filterMatch.take(3).toList();
         return SizedBox(
-            height: filterMatch.isEmpty ? 0 : AppLayout.getHeight(300),
-            child: ListView.builder(
-                itemCount: finalfilterMatch.length,
-                itemBuilder: (context, index) {
-                  MatchModel matchData = finalfilterMatch[index];
+          height: filterMatch.isEmpty ? 0 : AppLayout.getHeight(390),
+          child: Column(
+            children: finalfilterMatch.map((matchData) {
+              //crest hanlder
+              Widget homeTeamCrest =
+                  UtilsExtension.buildCrestImage(matchData.homeTeam.crest);
+              Widget awayTeamCrest =
+                  UtilsExtension.buildCrestImage(matchData.awayTeam.crest);
 
-                  //crest hanlder
-                  Widget homeTeamCrest =
-                      UtilsExtension.buildCrestImage(matchData.homeTeam.crest);
-                  Widget awayTeamCrest =
-                      UtilsExtension.buildCrestImage(matchData.awayTeam.crest);
+              Map<String, String> formattedDate =
+                  UtilsExtension.formatDate(matchData.utcDate);
 
-                  Map<String, String> formattedDate =
-                      UtilsExtension.formatDate(matchData.utcDate);
-                  return Container(
-                      margin: EdgeInsets.symmetric(
-                          vertical: AppLayout.getHeight(5)),
-                      height: AppLayout.getHeight(120),
-                      // width: AppLayout.getWidth(300),
-                      constraints:
-                          BoxConstraints(minWidth: AppLayout.getWidth(200)),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFf6f6f6),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: AppLayout.getHeight(15),
-                            vertical: AppLayout.getHeight(20)),
-                        child: Column(
+              return Container(
+                  margin:
+                      EdgeInsets.symmetric(vertical: AppLayout.getHeight(5)),
+                  height: AppLayout.getHeight(120),
+                  // width: AppLayout.getWidth(300),
+                  constraints:
+                      BoxConstraints(minWidth: AppLayout.getWidth(200)),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFf6f6f6),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: AppLayout.getHeight(15),
+                        vertical: AppLayout.getHeight(20)),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        NormalText(
+                          text: matchData.status,
+                          fontSize: AppLayout.getHeight(6),
+                          color: Pallete.blueColor,
+                        ),
+                        NormalText(
+                          text: "${formattedDate['date']}",
+                          fontSize: AppLayout.getHeight(10),
+                          color: Pallete.blueColor,
+                        ),
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            NormalText(
-                              text: matchData.status,
-                              fontSize: AppLayout.getHeight(6),
-                              color: Pallete.blueColor,
-                            ),
-                            NormalText(
-                              text: "${formattedDate['date']}",
-                              fontSize: AppLayout.getHeight(10),
-                              color: Pallete.blueColor,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Container(
-                                  constraints: BoxConstraints(
-                                      minWidth: AppLayout.getWidth(100)),
-                                  // height: AppLayout.getHeight(120),
-                                  child: Row(
-                                    children: [
-                                      NormalText(
-                                        text: matchData.homeTeam.shortName,
-                                        fontSize: AppLayout.getHeight(10),
-                                        color: Pallete.blueColor,
-                                      ),
-                                      Gap(AppLayout.getWidth(2)),
-                                      Container(
-                                        height: AppLayout.getHeight(30),
-                                        width: AppLayout.getHeight(30),
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.white,
-                                        ),
-                                        child: Padding(
-                                            padding: const EdgeInsets.all(5.0),
-                                            child: homeTeamCrest),
-                                      ),
-                                    ],
+                            Container(
+                              constraints: BoxConstraints(
+                                  minWidth: AppLayout.getWidth(100)),
+                              // height: AppLayout.getHeight(120),
+                              child: Row(
+                                children: [
+                                  NormalText(
+                                    text: matchData.homeTeam.shortName,
+                                    fontSize: AppLayout.getHeight(10),
+                                    color: Pallete.blueColor,
                                   ),
-                                ),
-                                Container(
-                                  constraints: BoxConstraints(
-                                      minWidth: AppLayout.getWidth(70)),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      NormalText(
-                                        text:
-                                            "${matchData.score.fullTime.home}",
-                                        fontSize: AppLayout.getHeight(18),
-                                        color: Pallete.blueColor,
-                                      ),
-                                      Gap(AppLayout.getWidth(5)),
-                                      Container(
-                                          height: AppLayout.getHeight(3),
-                                          width: AppLayout.getHeight(10),
-                                          decoration: const BoxDecoration(
-                                            shape: BoxShape.rectangle,
-                                            color: Pallete.blueColor,
-                                          )),
-                                      Gap(AppLayout.getWidth(5)),
-                                      NormalText(
-                                        text:
-                                            "${matchData.score.fullTime.away}",
-                                        fontSize: AppLayout.getHeight(18),
-                                        color: Pallete.blueColor,
-                                      )
-                                    ],
+                                  Gap(AppLayout.getWidth(2)),
+                                  Container(
+                                    height: AppLayout.getHeight(30),
+                                    width: AppLayout.getHeight(30),
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.white,
+                                    ),
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: homeTeamCrest),
                                   ),
-                                ),
-                                Container(
-                                  constraints: BoxConstraints(
-                                      minWidth: AppLayout.getWidth(100)),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        height: AppLayout.getHeight(30),
-                                        width: AppLayout.getHeight(30),
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.white,
-                                        ),
-                                        child: Padding(
-                                            padding: const EdgeInsets.all(5.0),
-                                            child: awayTeamCrest),
-                                      ),
-                                      Gap(AppLayout.getWidth(2)),
-                                      NormalText(
-                                        text: matchData.awayTeam.shortName,
-                                        fontSize: AppLayout.getHeight(10),
-                                        color: Pallete.blueColor,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                            Gap(AppLayout.getHeight(5)),
-                            NormalText(
-                              text: matchData.competition.name ==
-                                      "Primera Division"
-                                  ? "La liga"
-                                  : matchData.competition.name,
-                              fontSize: AppLayout.getHeight(10),
-                              color: Pallete.redColor,
+                            Container(
+                              constraints: BoxConstraints(
+                                  minWidth: AppLayout.getWidth(70)),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  NormalText(
+                                    text: "${matchData.score.fullTime.home}",
+                                    fontSize: AppLayout.getHeight(18),
+                                    color: Pallete.blueColor,
+                                  ),
+                                  Gap(AppLayout.getWidth(5)),
+                                  Container(
+                                      height: AppLayout.getHeight(3),
+                                      width: AppLayout.getHeight(10),
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.rectangle,
+                                        color: Pallete.blueColor,
+                                      )),
+                                  Gap(AppLayout.getWidth(5)),
+                                  NormalText(
+                                    text: "${matchData.score.fullTime.away}",
+                                    fontSize: AppLayout.getHeight(18),
+                                    color: Pallete.blueColor,
+                                  )
+                                ],
+                              ),
+                            ),
+                            Container(
+                              constraints: BoxConstraints(
+                                  minWidth: AppLayout.getWidth(100)),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    height: AppLayout.getHeight(30),
+                                    width: AppLayout.getHeight(30),
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.white,
+                                    ),
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: awayTeamCrest),
+                                  ),
+                                  Gap(AppLayout.getWidth(2)),
+                                  NormalText(
+                                    text: matchData.awayTeam.shortName,
+                                    fontSize: AppLayout.getHeight(10),
+                                    color: Pallete.blueColor,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
-                      ));
-                }));
+                        Gap(AppLayout.getHeight(5)),
+                        NormalText(
+                          text: matchData.competition.name == "Primera Division"
+                              ? "La liga"
+                              : matchData.competition.name,
+                          fontSize: AppLayout.getHeight(10),
+                          color: Pallete.redColor,
+                        ),
+                      ],
+                    ),
+                  ));
+            }).toList(),
+          ),
+        );
       },
       loading: () => SpinKitWaveSpinner(
         color: const Color(0xFFf6f6f6),

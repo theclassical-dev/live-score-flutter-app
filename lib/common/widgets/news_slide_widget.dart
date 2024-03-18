@@ -5,6 +5,7 @@ import 'package:livescore/common/normal_text.dart';
 import 'package:livescore/core/core.dart';
 import 'package:livescore/theme/theme.dart';
 
+// ignore: must_be_immutable
 class NewsSlideWidget extends StatelessWidget {
   final String image;
   final String author;

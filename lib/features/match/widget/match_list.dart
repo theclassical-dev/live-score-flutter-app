@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:livescore/common/normal_text.dart';
 import 'package:livescore/core/core.dart';
-import 'package:livescore/core/utlis.dart';
 import 'package:livescore/models/match.dart';
 import 'package:livescore/theme/theme.dart';
 
@@ -24,7 +23,7 @@ class MatchList extends ConsumerWidget {
         List<MatchModel> filteredMatch = matches
             .where((match) => (match.status == 'TIMED' &&
                 competitionsCodeOrder.contains(match.competition.code)))
-            .take(5)
+            .take(3)
             .toList();
 
         //sorting by competition code
@@ -34,15 +33,9 @@ class MatchList extends ConsumerWidget {
         DateTime date = DateTime.now();
         // print(filteredMatch);
         return SizedBox(
-          height: filteredMatch.isEmpty ? 0 : AppLayout.getHeight(300),
-          // height: 500,
-          child: ListView.builder(
-              itemCount: filteredMatch.length,
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
-              itemBuilder: (context, index) {
-                MatchModel matchData = filteredMatch[index];
-
+            height: filteredMatch.isEmpty ? 0 : AppLayout.getHeight(390),
+            child: Column(
+              children: filteredMatch.map((matchData) {
                 //crest hanlder
                 Widget homeTeamCrest =
                     UtilsExtension.buildCrestImage(matchData.homeTeam.crest);
@@ -165,8 +158,8 @@ class MatchList extends ConsumerWidget {
                         ],
                       ),
                     ));
-              }),
-        );
+              }).toList(),
+            ));
       },
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (error, stack) => Center(
